@@ -1,0 +1,351 @@
+/* CSS Puro - Grid Layout e Flexbox Customizado */
+
+/* Filtro Section - Grid e Flexbox Puro */
+.filtro-section {
+  background-color: #ffffff;
+  padding: 2.5rem 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 80px;
+  z-index: 50;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.filtro-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .filtro-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .filtro-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.filtro-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filtro-group label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+}
+
+.filtro-group input,
+.filtro-group select {
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.filtro-group input:focus,
+.filtro-group select:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.filtro-btns {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.filtro-btns button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filtro-btns .btn-filtrar {
+  background-color: #d4af37;
+  color: #1a1a1a;
+}
+
+.filtro-btns .btn-filtrar:hover {
+  background-color: #e5b850;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
+.filtro-btns .btn-limpar {
+  background-color: transparent;
+  color: #1a1a1a;
+  border: 2px solid #1a1a1a;
+}
+
+.filtro-btns .btn-limpar:hover {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+
+/* Grid de Cards Responsivo */
+.imoveis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Detalhes do Imóvel - Layout Flexbox */
+.imovel-detail-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 992px) {
+  .imovel-detail-content {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.imovel-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .imovel-info-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.imovel-info-grid .info-item {
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+.imovel-info-grid .label {
+  font-size: 0.85rem;
+  color: #666666;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.imovel-info-grid .value {
+  font-size: 1.5rem;
+  color: #d4af37;
+  font-weight: 700;
+}
+
+/* Galeria de Imagens */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 75%;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+}
+
+.carousel-container img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-container img.active {
+  opacity: 1;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.carousel-controls button {
+  background-color: #d4af37;
+  color: #1a1a1a;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.carousel-controls button:hover {
+  background-color: #e5b850;
+}
+
+.carousel-counter {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* Atributos */
+.imovel-attributes {
+  margin-top: 2.5rem;
+}
+
+.imovel-attributes h4 {
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+  font-family: 'Playfair Display', serif;
+}
+
+.attributes-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .attributes-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.attributes-list .attribute-tag {
+  padding: 1rem 1.5rem;
+  background-color: rgba(212, 175, 55, 0.1);
+  border: 1px solid #d4af37;
+  border-radius: 5px;
+  color: #1a1a1a;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.attributes-list .attribute-tag:hover {
+  background-color: rgba(212, 175, 55, 0.2);
+  transform: translateY(-3px);
+}
+
+/* Formulário de Proposta */
+.proposta-form {
+  background-color: #f9f9f9;
+  padding: 2.5rem;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.proposta-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.proposta-form label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+}
+
+.proposta-form input,
+.proposta-form textarea,
+.proposta-form select {
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.proposta-form input:focus,
+.proposta-form textarea:focus,
+.proposta-form select:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.proposta-form button {
+  padding: 12px 25px;
+  background-color: #d4af37;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 3px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.proposta-form button:hover {
+  background-color: #e5b850;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
+/* Responsividade - Tablets */
+@media (max-width: 768px) {
+  .filtro-container {
+    padding: 0 1rem;
+  }
+
+  .imoveis {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .imovel-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsividade - Mobile */
+@media (max-width: 576px) {
+  .filtro-container {
+    grid-template-columns: 1fr;
+  }
+
+  .filtro-btns {
+    flex-direction: column;
+  }
+
+  .filtro-btns button {
+    width: 100%;
+  }
+
+  .imoveis {
+    grid-template-columns: 1fr;
+  }
+
+  .imovel-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .attributes-list {
+    grid-template-columns: 1fr;
+  }
+}
