@@ -1,0 +1,31 @@
+{
+  "name": "sa-central-vendas",
+  "version": "1.0.0",
+  "description": "SA Central de Vendas - Plataforma de Vendas de Imóveis de Luxo",
+  "author": "SamuelProPlayer",
+  "license": "MIT",
+  "scripts": {
+    "sass": "sass scss:css --watch",
+    "sass:build": "sass scss:css --no-source-map",
+    "server": "json-server --watch db.json --port 3000",
+    "dev": "concurrently \"npm run sass\" \"npm run server\" \"npx lite-server\"",
+    "build": "npm run sass:build",
+    "lint": "eslint js/",
+    "format": "prettier --write \"**/*.{html,css,js,json}\""
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "jquery": "^3.7.0",
+    "jquery-mask-plugin": "^1.14.16"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.20",
+    "concurrently": "^8.2.0",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "json-server": "^0.17.3",
+    "lite-server": "^2.10.0",
+    "prettier": "^3.0.0",
+    "sass": "^1.66.0"
+  }
+}

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SA Central de Vendas - Plataforma de vendas de imóveis de luxo">
+    <title>SA Central de Vendas - Imóveis Premium</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom-grid.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="logo.png">
+</head>
+<body>
+    <!-- Navegação -->
+    <nav class="nav">
+        <div id="logo">
+            <a href="index.html"><img src="logo.png" alt="Logo SA Central" height="60"></a>
+        </div>
+        <div class="btn-nav">
+            <a href="index.html"><button>Home</button></a>
+            <a href="#localizacao"><button>Localização</button></a>
+            <a href="#contato"><button>Contato</button></a>
+            <a href="login.html"><button id="btn-add">Área do Corretor</button></a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="part1">
+        <div class="content-part1">
+            <h1 class="title-part1">Uma vida de alto padrão está esperando por você</h1>
+            <p class="subtitle-part1">Descubra propriedades requintadas no coração da sofisticação urbana.</p>
+            <a href="#filtro-section" class="btn btn-primary">Explore Agora</a>
+        </div>
+    </section>
+
+    <!-- Filtro de Pesquisa -->
+    <section id="filtro-section" class="filtro-section">
+        <div class="filtro-container">
+            <div class="filtro-group">
+                <label for="filtro-tipo">Tipo de Imóvel</label>
+                <select id="filtro-tipo" name="tipo">
+                    <option value="">Todos</option>
+                    <option value="casa">Casa</option>
+                    <option value="apartamento">Apartamento</option>
+                    <option value="sobrado">Sobrado</option>
+                </select>
+            </div>
+            <div class="filtro-group">
+                <label for="filtro-cidade">Cidade</label>
+                <select id="filtro-cidade" name="cidade">
+                    <option value="">Todas</option>
+                    <option value="São Paulo">São Paulo</option>
+                    <option value="Rio de Janeiro">Rio de Janeiro</option>
+                    <option value="Belo Horizonte">Belo Horizonte</option>
+                </select>
+            </div>
+            <div class="filtro-group">
+                <label for="filtro-preco">Preço Máximo (R$)</label>
+                <input type="range" id="filtro-preco" name="preco" min="0" max="15000000" step="100000" value="15000000">
+                <small id="preco-display">Até R$ 15.000.000</small>
+            </div>
+            <div class="filtro-group">
+                <label for="filtro-finalidade">Finalidade</label>
+                <select id="filtro-finalidade" name="finalidade">
+                    <option value="">Todas</option>
+                    <option value="venda">Venda</option>
+                    <option value="aluguel">Aluguel</option>
+                </select>
+            </div>
+            <div class="filtro-btns">
+                <button class="btn-filtrar" id="btn-filtrar">Filtrar</button>
+                <button class="btn-limpar" id="btn-limpar">Limpar Filtros</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coleção de Imóveis -->
+    <section id="destaque1" class="destaque1">
+        <header class="section-header">
+            <h2>Coleções de Imóveis Selecionadas</h2>
+            <p>Residências selecionadas a dedo que definem o luxo moderno.</p>
+        </header>
+        <div class="imoveis" id="imoveis-container">
+            <!-- Cards carregados dinamicamente via JS -->
+        </div>
+    </section>
+
+    <!-- Vizinhança -->
+    <section id="neighborhood" class="neighborhood">
+        <header class="section-header">
+            <h2>Vizinhança Premium</h2>
+            <p>Um enclave de elegância e sofisticação.</p>
+        </header>
+        <div class="destaque-grid">
+            <article class="destaque-card">
+                <div class="destaque-icon">🏛️</div>
+                <h3>Centro Cultural</h3>
+                <p>Museus, galerias e espaços de espetáculos de nível internacional a poucos passos de distância.</p>
+            </article>
+            <article class="destaque-card">
+                <div class="destaque-icon">🍽️</div>
+                <h3>Jantares Finos</h3>
+                <p>Restaurantes com estrelas Michelin e estabelecimentos culinários sofisticados e excelência gastronômica.</p>
+            </article>
+            <article class="destaque-card">
+                <div class="destaque-icon">🏋️</div>
+                <h3>Bem-estar</h3>
+                <p>Academias de ginástica, spas e centros de bem-estar de alto padrão oferecendo experiências holísticas.</p>
+            </article>
+            <article class="destaque-card">
+                <div class="destaque-icon">📚</div>
+                <h3>Educação</h3>
+                <p>Escolas particulares de alto nível e universidades de prestígio nas proximidades para sua família.</p>
+            </article>
+            <article class="destaque-card">
+                <div class="destaque-icon">🛍️</div>
+                <h3>Compras de Luxo</h3>
+                <p>Boutiques exclusivas, lojas emblemáticas de designers e experiências de varejo de alto padrão.</p>
+            </article>
+            <article class="destaque-card">
+                <div class="destaque-icon">🌳</div>
+                <h3>Parques</h3>
+                <p>Belos espaços verdes, jardins bem cuidados e áreas de lazer ao ar livre na natureza urbana.</p>
+            </article>
+            <article class="destaque-card">
+                <div class="destaque-icon">🚗</div>
+                <h3>Acessibilidade</h3>
+                <p>Localização estratégica com fácil acesso às principais rodovias, transporte e aeroportos.</p>
+            </article>
+            <article class="destaque-card">
+                <div class="destaque-icon">🏥</div>
+                <h3>Assistência Médica</h3>
+                <p>Hospitais e centros médicos de referência com atendimento especializado e de qualidade.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Localização -->
+    <section id="localizacao" class="localizacao">
+        <header class="section-header">
+            <h2>Localização dos Imóveis</h2>
+            <p>Descubra a localização estratégica de nossas propriedades premium.</p>
+        </header>
+        <div class="localizacao-container">
+            <figure id="mapa">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1088.058929818182!2d-51.466981148448234!3d-25.34664708428611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-BR!2sbr!4v1693526000000" width="100%" height="450" style="border:0; border-radius: 8px; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </figure>
+        </div>
+    </section>
+
+    <!-- Sobre a Empresa -->
+    <section class="company-info">
+        <header class="section-header">
+            <h2>Sobre SA Incorporadora</h2>
+            <p>Seu parceiro de confiança em imóveis de luxo.</p>
+        </header>
+        <div class="company-content">
+            <article class="company-description">
+                <h3>Excelência em cada detalhe</h3>
+                <p>Com mais de 100 anos de experiência no mercado imobiliário de luxo, a SA Construtora e Incorporadora se consolidou como o principal destino para clientes exigentes que buscam a perfeição.</p>
+                <p>Nossa equipe dedicada de profissionais experientes está comprometida em compreender sua visão e entregar imóveis que superem as expectativas, combinando excelência arquitetônica com sofisticação em estilo de vida.</p>
+            </article>
+            <aside class="company-stats">
+                <div class="stat">
+                    <h4>500+</h4>
+                    <p>Imóveis Vendidos</p>
+                </div>
+                <div class="stat">
+                    <h4>100+</h4>
+                    <p>Anos de Experiência</p>
+                </div>
+                <div class="stat">
+                    <h4>99%</h4>
+                    <p>Satisfação do Cliente</p>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="contact">
+        <header class="section-header">
+            <h2>Entre em Contato</h2>
+            <p>Entre em contato com nossos especialistas em imóveis de luxo.</p>
+        </header>
+        <div class="contact-container">
+            <form class="contact-form" id="form-contato" novalidate>
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" required aria-label="Nome Completo">
+                </div>
+                <div class="form-group">
+                    <label for="email-contato">Endereço de Email</label>
+                    <input type="email" id="email-contato" name="email" required aria-label="Email">
+                </div>
+                <div class="form-group">
+                    <label for="telefone-contato">Telefone</label>
+                    <input type="tel" id="telefone-contato" name="telefone" placeholder="(00) 00000-0000" aria-label="Telefone">
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" rows="5" placeholder="Fale sobre seus interesses" aria-label="Mensagem"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Pedido</button>
+            </form>
+            <aside class="contact-info">
+                <div class="info">
+                    <h4>Endereço</h4>
+                    <p>Av. Guarapuava, 1150 - Sala 402<br>Guarapuava - PR, 85051-010</p>
+                </div>
+                <div class="info">
+                    <h4>Telefone</h4>
+                    <p><a href="tel:+554299999999">+55 (42) 9999-9999</a></p>
+                    <p>Disponível de: Domingo - Domingo, das 6AM - 23PM</p>
+                </div>
+                <div class="info">
+                    <h4>Email</h4>
+                    <p><a href="mailto:contato@savendas.com">contato@savendas.com</a></p>
+                    <p><a href="mailto:vendas@savendas.com">vendas@savendas.com</a></p>
+                </div>
+                <div class="info">
+                    <h4>Horário</h4>
+                    <p>Segunda - Sexta: 8AM - 6PM<br>Sábado: 10AM - 3PM<br>Domingo: Apenas Telefone</p>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 SA Incorporadora. Todos os direitos reservados.</p>
+            <p>Definição de alto padrão | Sua casa dos sonhos</p>
+        </div>
+    </footer>
+
+    <!-- Modal de Detalhes do Imóvel -->
+    <div id="modal-imovel" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar modal">&times;</button>
+            <div id="modal-body">
+                <!-- Conteúdo carregado dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="js/modules/validacao.js"></script>
+    <script src="js/modules/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

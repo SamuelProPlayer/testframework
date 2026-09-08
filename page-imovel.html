@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalhes do Imóvel - SA Central de Vendas">
+    <title>Detalhes do Imóvel - SA Central de Vendas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom-grid.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="logo.png">
+</head>
+<body>
+    <!-- Navegação -->
+    <nav class="nav">
+        <div id="logo">
+            <a href="index.html"><img src="logo.png" alt="Logo SA Central" height="60"></a>
+        </div>
+        <div class="btn-nav">
+            <a href="index.html"><button>Home</button></a>
+            <a href="index.html#contato"><button>Contato</button></a>
+            <a href="login.html"><button id="btn-add">Área do Corretor</button></a>
+        </div>
+    </nav>
+
+    <!-- Container Principal -->
+    <main class="imovel-detail" id="imovel-content">
+        <!-- Conteúdo carregado via JavaScript -->
+        <div class="loading" style="padding-top: 150px; text-align: center;">
+            <p>Carregando detalhes do imóvel...</p>
+        </div>
+    </main>
+
+    <!-- Modal de Proposta -->
+    <div id="modal-proposta" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <button class="modal-close" aria-label="Fechar modal">&times;</button>
+            <h3 style="margin-bottom: 1.5rem; font-family: 'Playfair Display', serif; color: #1a1a1a;">Envie uma Proposta</h3>
+            <form id="form-proposta-page" novalidate>
+                <div class="form-group">
+                    <label for="prop-nome">Seu Nome</label>
+                    <input type="text" id="prop-nome" name="nome" required placeholder="Nome completo" aria-label="Seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="prop-email">Email</label>
+                    <input type="email" id="prop-email" name="email" required placeholder="seu@email.com" aria-label="Seu email">
+                </div>
+                <div class="form-group">
+                    <label for="prop-telefone">Telefone</label>
+                    <input type="tel" id="prop-telefone" name="telefone" placeholder="(00) 00000-0000" aria-label="Seu telefone">
+                </div>
+                <div class="form-group">
+                    <label for="prop-mensagem">Mensagem</label>
+                    <textarea id="prop-mensagem" name="mensagem" rows="4" placeholder="Conte-nos seu interesse" aria-label="Sua mensagem"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Proposta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 SA Incorporadora. Todos os direitos reservados.</p>
+            <p>Definição de alto padrão | Sua casa dos sonhos</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="js/modules/validacao.js"></script>
+    <script src="js/modules/api.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Obter ID do imóvel da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const imovelId = parseInt(urlParams.get('id'));
+
+            if (!imovelId) {
+                $('#imovel-content').html(
+                    '<p style="text-align: center; padding: 3rem; color: #666;">Imóvel não encontrado. <a href="index.html">Voltar para home</a></p>'
+                );
+                return;
+            }
+
+            // Carregar imóvel
+            API.buscarImovelPorId(imovelId, function(imovel) {
+                renderizarDetalhe(imovel);
+            }, function(error) {
+                $('#imovel-content').html(
+                    '<p style="text-align: center; padding: 3rem; color: #666;">Erro ao carregar imóvel. <a href="index.html">Voltar para home</a></p>'
+                );
+            });
+
+            function renderizarDetalhe(imovel) {
+                const atributosHTML = imovel.atributos
+                    .map((attr) => `<span class="attribute-tag">${attr}</span>`)
+                    .join('');
+
+                const imagensHTML = imovel.imagens
+                    .map((img, index) => `
+                        <div class="carousel-slide" style="${index === 0 ? '' : 'display: none;'}">
+                            <img src="${img}" alt="Imagem ${index + 1}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    `)
+                    .join('');
+
+                const html = `
+                    <section class="imovel-header">
+                        <article>
+                            <figure class="imovel-gallery" style="border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                                <div style="position: relative; width: 100%; padding-bottom: 75%; background: #f5f5f5;">
+                                    <div style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+                                        ${imagensHTML}
+                                    </div>
+                                </div>
+                                <div class="carousel-controls" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #fff; gap: 1rem;">
+                                    <button class="carousel-prev-page" style="padding: 8px 12px; background: #d4af37; color: #1a1a1a; border: none; border-radius: 3px; cursor: pointer; font-weight: 600;">← Anterior</button>
+                                    <span class="carousel-counter-page" style="font-weight: 600; color: #1a1a1a;">1 / ${imovel.imagens.length}</span>
+                                    <button class="carousel-next-page" style="padding: 8px 12px; background: #d4af37; color: #1a1a1a; border: none; border-radius: 3px; cursor: pointer; font-weight: 600;">Próxima →</button>
+                                </div>
+                            </figure>
+                        </article>
+                        <aside style="background-color: #f9f9f9; padding: 2rem; border-radius: 8px; height: fit-content;">
+                            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem; color: #1a1a1a;">${imovel.nome}</h2>
+                            <p style="font-size: 1.8rem; color: #d4af37; font-weight: 700; margin-bottom: 2rem;">R$ ${imovel.preco.toLocaleString('pt-BR')}</p>
+                            
+                            <div class="imovel-info-grid">
+                                <div class="info-item">
+                                    <div class="label">Suítes</div>
+                                    <div class="value">${imovel.suites}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="label">Banheiros</div>
+                                    <div class="value">${imovel.banheiros}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="label">Área</div>
+                                    <div class="value">${imovel.area} m²</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="label">Garagens</div>
+                                    <div class="value">${imovel.garagens || 0}</div>
+                                </div>
+                            </div>
+
+                            <button id="btn-abrir-proposta" style="width: 100%; padding: 14px; margin-top: 2rem; background: #d4af37; color: #1a1a1a; border: none; border-radius: 3px; font-weight: 600; cursor: pointer; font-size: 1rem;" class="btn btn-primary">Envie uma Proposta</button>
+                            <a href="index.html" style="display: block; text-align: center; padding: 1rem; margin-top: 1rem; color: #666; text-decoration: underline;">Voltar para Home</a>
+                        </aside>
+                    </section>
+
+                    <article style="margin-top: 3rem;">
+                        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1.5rem; color: #1a1a1a;">Sobre o Imóvel</h3>
+                        <p style="color: #666; line-height: 1.8; font-size: 0.95rem; margin-bottom: 1.5rem;">${imovel.descricaoCompleta}</p>
+                    </article>
+
+                    <section style="margin-top: 2rem;">
+                        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">Atributos</h4>
+                        <div class="attributes-list">
+                            ${atributosHTML}
+                        </div>
+                    </section>
+
+                    <section style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
+                        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1rem; color: #1a1a1a;">Localização</h4>
+                        <p style="color: #666; margin-bottom: 0.5rem;"><strong>Endereço:</strong> ${imovel.endereco}</p>
+                        <p style="color: #666; margin-bottom: 0.5rem;"><strong>Bairro:</strong> ${imovel.bairro}</p>
+                        <p style="color: #666; margin-bottom: 0.5rem;"><strong>Cidade:</strong> ${imovel.cidade}</p>
+                        <p style="color: #666;"><strong>CEP:</strong> ${imovel.cep}</p>
+                    </section>
+                `;
+
+                $('#imovel-content').html(html);
+
+                // Carrossel
+                let imagemAtual = 0;
+
+                $('.carousel-prev-page').on('click', function() {
+                    imagemAtual = (imagemAtual - 1 + imovel.imagens.length) % imovel.imagens.length;
+                    atualizarCarrossel();
+                });
+
+                $('.carousel-next-page').on('click', function() {
+                    imagemAtual = (imagemAtual + 1) % imovel.imagens.length;
+                    atualizarCarrossel();
+                });
+
+                function atualizarCarrossel() {
+                    $('.carousel-slide').hide();
+                    $('.carousel-slide').eq(imagemAtual).show();
+                    $('.carousel-counter-page').text(`${imagemAtual + 1} / ${imovel.imagens.length}`);
+                }
+
+                // Modal de Proposta
+                $('#btn-abrir-proposta').on('click', function() {
+                    $('#modal-proposta').addClass('active');
+                });
+
+                $('.modal-close').on('click', function() {
+                    $('#modal-proposta').removeClass('active');
+                });
+
+                $('#modal-proposta').on('click', function(e) {
+                    if ($(e.target).is('#modal-proposta')) {
+                        $(this).removeClass('active');
+                    }
+                });
+
+                // Form de Proposta
+                $('#form-proposta-page').on('submit', function(e) {
+                    e.preventDefault();
+
+                    const proposta = {
+                        id: Date.now(),
+                        imovelId: imovel.id,
+                        nome: $('#prop-nome').val(),
+                        email: $('#prop-email').val(),
+                        telefone: $('#prop-telefone').val(),
+                        mensagem: $('#prop-mensagem').val(),
+                        dataProposta: new Date().toISOString(),
+                    };
+
+                    API.adicionarProposta(
+                        proposta,
+                        function() {
+                            alert('Proposta enviada com sucesso!');
+                            $('#form-proposta-page')[0].reset();
+                            $('#modal-proposta').removeClass('active');
+                        },
+                        function(error) {
+                            alert('Erro ao enviar proposta: ' + error);
+                        }
+                    );
+                });
+            }
+        });
+    </script>
+</body>
+</html>
