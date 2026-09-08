@@ -1,0 +1,49 @@
+// Paleta de Cores - Inspirada no projeto original
+$primary-color: #2c2c2c;
+$secondary-color: #d4af37; // Dourado premium
+$accent-color: #f5f5f5;
+$text-dark: #1a1a1a;
+$text-light: #666666;
+$border-color: #e0e0e0;
+$bg-light: #fbfbfb;
+$bg-dark: #1a1a1a;
+
+// Tipografia
+$font-primary: 'Noto Sans', sans-serif;
+$font-display: 'Playfair Display', serif;
+$font-size-base: 1rem;
+$font-size-sm: 0.95rem;
+$font-size-lg: 1.3rem;
+$font-size-xl: 2.8rem;
+$font-size-2xl: 4rem;
+
+// Espaçamento
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2.5rem;
+$spacing-xl: 4rem;
+$spacing-2xl: 6rem;
+
+// Transições
+$transition: all 0.3s ease;
+$transition-fast: all 0.15s ease;
+$transition-slow: all 0.6s ease;
+
+// Responsividade
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// Sombras
+$shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 5px 20px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+$shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+
+// Border Radius
+$border-radius-sm: 3px;
+$border-radius-md: 5px;
+$border-radius-lg: 8px;
