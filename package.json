@@ -27,5 +27,16 @@
     "lite-server": "^2.10.0",
     "prettier": "^3.0.0",
     "sass": "^1.66.0"
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamuelProPlayer/testframework.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SamuelProPlayer/testframework/issues"
+  },
+  "homepage": "https://github.com/SamuelProPlayer/testframework#readme"
 }
